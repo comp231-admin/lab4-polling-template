@@ -93,7 +93,12 @@ $HEX_0$
 1.  The counter should advance approximately every 0.25 seconds. When
     the counter reaches 99, it should reset back to zero.
 
-2.  To wait 0.25 seconds, we will use a *delay loop*. This is an
+2.  If any $KEY$ button is pressed, you should stop the timer if it's
+    running and start it if it is not running. The timer should
+    initially start off and will start with a button press.
+
+
+3.  To wait 0.25 seconds, we will use a *delay loop*. This is an
     inefficient, but simple way to sleep for a specific duration. The
     code to do this is shown below (you can use any register):
 
@@ -101,16 +106,16 @@ $HEX_0$
                  sub_loop: subs r7, r7, #1   // subtract one, set status
                            bne sub_loop
 
-3.  The main complication with using the delay loop is that you may miss
+4.  The main complication with using the delay loop is that you may miss
     the time when keypress happens. To address this, we will use the
     *edge-capture register* on the GPIO port. When a button is pressed,
     the corresponding bit in the edge-capture register will be set until
     you reset it back to zero.
 
-4.  Create your program in `part2.s` and create a new project file to go
+5.  Create your program in `part2.s` and create a new project file to go
     along with your program.
 
-5.  Compile and test your program to make sure it works correctly.
+6.  Compile and test your program to make sure it works correctly.
 
 # Part 3: Hardware Timers
 
@@ -137,22 +142,26 @@ A9* document that can be found on Canvas.
     tick, the *counter register* will decrement from the initial load
     value, down to zero.
 
-2.  The timer will only start timing when a 1 has been written to the
+2.  If any $KEY$ button is pressed, you should stop the timer if it's
+    running and start it if it is not running. The timer should
+    initially start off and will start with a button press.
+
+3.  The timer will only start timing when a 1 has been written to the
     *enable* bit (E) of the *control register*. The timer will stop if a
     zero is written to the enable bit.
 
-3.  When the timer reaches zero, it will set the F bit in the *interrupt
+4.  When the timer reaches zero, it will set the F bit in the *interrupt
     status register* to 1. This will remain set until a zero is written
     to this bit.
 
-4.  If the *automatic* bit (A) of the control register is set, then the
+5.  If the *automatic* bit (A) of the control register is set, then the
     load value will be used to reset the timer and start timing again
     automatically.
 
-5.  Create your program in `part3.s` and create a new project file to go
+6.  Create your program in `part3.s` and create a new project file to go
     along with your program.
 
-6.  Compile and test your program to make sure it works correctly.
+7.  Compile and test your program to make sure it works correctly.
 
 # Part 4: A Real-time Clock
 
