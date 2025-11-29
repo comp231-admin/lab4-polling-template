@@ -140,7 +140,9 @@ A9* document that can be found on Canvas.
 1.  To use the timer, you first write a value to the *load register*.
     This timer operates at a frequency of 200MHz, so once every clock
     tick, the *counter register* will decrement from the initial load
-    value, down to zero.
+    value, down to zero. Your timer should expire every 0.25 seconds
+    and display the count on the seven-segment displays. The counter
+    should roll-oever when it reaches 99.
 
 2.  If any $KEY$ button is pressed, you should stop the timer if it's
     running and start it if it is not running. The timer should
@@ -172,7 +174,7 @@ clock. You should display the time on the four seven-segment displays
 
 1.  Measure time intervals of 0.01 seconds, by polling the A9 Private
     Timer. Every time the timer elapses, update the time counter and
-    display it on the seven-segmented displays.
+    display it on the seven-segment displays.
 
 2.  If any $KEY$ button is pressed, you should stop the timer if it's
     running and start it if it is not running. The timer should
